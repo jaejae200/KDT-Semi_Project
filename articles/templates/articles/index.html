@@ -19,52 +19,29 @@
 {% block body %}
   <div class="bg-img p-0"></div>
 {% endblock %}
+
 {% block section %}
   <div class="my-3 d-flex align-items-center justify-content-between">
     <h2 class="fw-bold" style="color: #f96e46"># 맛집 리스트</h2>
     <a href="#" class="text-muted text-decoration-none fs-5">더보기</a>
   </div>
   <div class="row">
-    <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    {% for article in articles_list %}
+      <div class="col-3">
+        <div class="card" style="width: 18rem;">
+          {% if article.image %}
+            <img src="{{ article.image.url }}" class="card-img-top" alt="...">
+          {% else %}
+            <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" alt="...">
+          {% endif %}
+          <div class="card-body">
+            <a href="{% url 'articles:detail' article.pk %}">
+              <h3 class=" card-text">{{ article.title }}</h3>
+            </a>
+            <p class="card-text">{{ article.content }}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="card" style="width: 18rem;">
-        <img src="https://dummyimage.com/1200x960/000000/c4c4c4" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-
+    {% endfor %}
   </div>
 {% endblock %}
