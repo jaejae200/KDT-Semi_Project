@@ -26,26 +26,31 @@
         <a class="navbar-brand p-0" href="{% url 'articles:index' %}">
           <img src="{% static 'articles/logo.jpg'%}" style="width: 100px; height: 45px;">
         </a>
-        <ul class=" navbar-nav ms-auto p-0 m-0">
-          <li class="nav-item border-end border-start">
-            <a class="nav-link fw-bold" aria-current="page" href="#">맛집 리스트</a>
-          </li>
-          {% if request.user.is_authenticated %}
-          <li class="nav-item border-end">
-            <a class="nav-link fw-bold" href="{% url 'articles:create' %}">맛집 등록</a>
-          </li
-          <li class="nav-item border-end">
-            <a class="nav-link fw-bold" href="{% url 'accounts:logout' %}">로그아웃</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="{% url 'accounts:detail' user.pk %}">내 정보</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="{% url 'accounts:login' %}">로그인</a>
-          </li>
-          {% endif %}
-        </ul>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class=" navbar-nav ms-auto p-0 m-0">
+            <li class="nav-item">
+              <a class="nav-link fw-bold" aria-current="page" href="#">맛집 리스트</a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="{% url 'articles:create' %}">맛집 등록</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="{% url 'accounts:logout' %}">로그아웃</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="{% url 'accounts:detail' user.pk %}">내 정보</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link fw-bold" href="{% url 'accounts:login' %}">로그인</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
       </div>
     </nav>
     {% block body %}{% endblock %}
